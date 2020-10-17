@@ -6,6 +6,7 @@ import OrderBook from "./components/organisms/OrderBook";
 import Alert from "@material-ui/lab/Alert";
 
 import axios from "axios";
+import AlertComponent from "./components/molecules/Alert";
 function App() {
   const [coinData, setCoinData] = useState([]);
   const [handlingPurchase, setHandlingPurchase] = useState(false);
@@ -97,14 +98,22 @@ function App() {
     <>
       <Header />
       {purchaseError && (
-        <Alert severity="error">Error with your purchase</Alert>
+        <AlertComponent severity="error" message="Error with your purchase" />
       )}
-      {salesError && <Alert severity="error">Error with your sales</Alert>}
+      {salesError && (
+        <AlertComponent severity="error" message="Error with your sales" />
+      )}
       {salesSuccess && (
-        <Alert severity="success">You have sold successfully</Alert>
+        <AlertComponent
+          severity="success"
+          message="You have sold successfully"
+        />
       )}
       {purchaseSuccess && (
-        <Alert severity="success">You have purchased successfully</Alert>
+        <AlertComponent
+          severity="success"
+          message="You have purchased successfully"
+        />
       )}
       <Exchange coinData={coinData} />
       <BuySell handlePurchase={handlePurchase} />
