@@ -18,25 +18,24 @@ function App() {
   const [retrieveOrderDataError, setRetrieveOrderDataError] = useState(false);
   const [orderData, setOrderData] = useState([]);
   // retrieve bitcoin data
+  const getData = async () => {
+    const res = await axios.get(
+      "https://api.coindesk.com/v1/bpi/currentprice.json",
+      {
+        headers: {
+          "Content-type": "application/json",
+        },
+      }
+    );
+
+    const keys = Object.keys(res.data.bpi);
+    let input = [];
+    keys.forEach((key) => {
+      input.push(res.data.bpi[key]);
+    });
+    setCoinData(input);
+  };
   useEffect(() => {
-    const getData = async () => {
-      const res = await axios.get(
-        "https://api.coindesk.com/v1/bpi/currentprice.json",
-        {
-          headers: {
-            "Content-type": "application/json",
-          },
-        }
-      );
-
-      const keys = Object.keys(res.data.bpi);
-      let input = [];
-      keys.forEach((key) => {
-        input.push(res.data.bpi[key]);
-      });
-      setCoinData(input);
-    };
-
     getData();
   }, []);
 
@@ -54,7 +53,7 @@ function App() {
 
   const handlePurchase = async () => {
     setHandlingPurchase(true);
-
+    getData(); // update latest coin data
     const res = await axios.post(
       process.env.REACT_APP_API_ENDPOINT + "/order",
       {
