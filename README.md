@@ -26,5 +26,5 @@ And add server url:
 - include updates with prices in graph
 - ~~open modal on clicking prominent 'sell button' in which you can select what you want to sell~~
 - order order data on price
-- fix warning message open / close
+- ~~fix warning message open / close~~
 - REFACTORING!!!
