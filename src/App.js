@@ -101,7 +101,7 @@ function App() {
       setSalesSuccess(true);
       getOrderData();
       await snooze();
-      setPurchaseSuccess(false); // set to false again so it can be re-opened
+      setSalesSuccess(false); // set to false again so it can be re-opened
     } else {
       setSalesError(true);
       await snooze();
