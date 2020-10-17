@@ -32,6 +32,7 @@ const OrderBook = ({ orderData, handleSale }) => {
                 <TableCell>Price rate USD</TableCell>
                 <TableCell>Price rate GBP</TableCell>
                 <TableCell>Price rate EUR</TableCell>
+                <TableCell>Action</TableCell>
               </TableHead>
               <TableBody>
                 {orderData &&
