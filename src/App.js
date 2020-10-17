@@ -51,6 +51,14 @@ function App() {
     return;
   };
 
+  const snooze = () => {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve();
+      }, 1000);
+    });
+  };
+
   const handlePurchase = async () => {
     setHandlingPurchase(true);
     getData(); // update latest coin data
@@ -68,8 +76,12 @@ function App() {
       setHandlingPurchase(false);
       setPurchaseSuccess(true);
       getOrderData(); // update list
+      await snooze();
+      setPurchaseSuccess(false); // set to false again so it can be re-opened
     } else {
-      setPurchaseSuccess(false);
+      setPurchaseError(true);
+      await snooze();
+      setPurchaseError(false); // set to false again so it can be re-opened
     }
   };
 
@@ -88,8 +100,12 @@ function App() {
       setHandlingSales(false);
       setSalesSuccess(true);
       getOrderData();
+      await snooze();
+      setPurchaseSuccess(false); // set to false again so it can be re-opened
     } else {
-      setSalesError(false);
+      setSalesError(true);
+      await snooze();
+      setSalesError(false); // set to false again so it can be re-opened
     }
   };
 

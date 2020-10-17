@@ -19,23 +19,14 @@ const useStyle = makeStyles(() => ({
   },
 }));
 
-const StyledTableCell = withStyles((theme) => ({
+const StyledTableCell = withStyles(() => ({
   head: {
     backgroundColor: "grey",
-    color: theme.palette.common.white,
   },
   body: {
     fontSize: 14,
   },
 }))(TableCell);
-
-const StyledTableRow = withStyles((theme) => ({
-  root: {
-    "&:nth-of-type(odd)": {
-      backgroundColor: theme.palette.action.hover,
-    },
-  },
-}))(TableRow);
 
 const OrderBook = ({ orderData, handleSale }) => {
   const classes = useStyle();
