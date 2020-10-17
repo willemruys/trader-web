@@ -49,7 +49,7 @@ function App() {
     });
     setOrderData(input);
 
-    return res;
+    return;
   };
 
   const handlePurchase = async () => {
@@ -88,6 +88,7 @@ function App() {
     if (res.status === 200) {
       setHandlingSales(false);
       setSalesSuccess(true);
+      getOrderData();
     } else {
       setSalesError(false);
     }

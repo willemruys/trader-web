@@ -22,7 +22,7 @@ And add server url:
 
 ## what remains to be developed
 
-- re-rendering after purchase and sales
+- ~~re-rendering after purchase and sales~~
 - include updates with prices in graph
 - open modal on clicking prominent 'sell button' in which you can select what you want to sell
 - order order data on price
