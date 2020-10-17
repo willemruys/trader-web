@@ -15,7 +15,6 @@ function App() {
   const [salesSuccess, setSalesSuccess] = useState(false);
   const [salesError, setSalesError] = useState(false);
   const [purchaseError, setPurchaseError] = useState(false);
-  const [purchaseData, setPurchaseData] = useState([]);
   const [retrieveOrderDataError, setRetrieveOrderDataError] = useState(false);
   const [orderData, setOrderData] = useState([]);
   // retrieve bitcoin data
@@ -58,7 +57,7 @@ function App() {
     const res = await axios.post(
       process.env.REACT_APP_API_ENDPOINT + "/order",
       {
-        orderDate: Date.now(),
+        orderDate: new Date(Date.now()),
         priceRateUSD: coinData[0].rate,
         priceRateGBP: coinData[1].rate,
         priceRateEUR: coinData[2].rate,

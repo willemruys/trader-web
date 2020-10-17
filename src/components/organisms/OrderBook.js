@@ -9,6 +9,7 @@ import {
   TableBody,
   TableRow,
   Button,
+  withStyles,
 } from "@material-ui/core";
 import React from "react";
 
@@ -17,6 +18,24 @@ const useStyle = makeStyles(() => ({
     paddingTop: 20,
   },
 }));
+
+const StyledTableCell = withStyles((theme) => ({
+  head: {
+    backgroundColor: "grey",
+    color: theme.palette.common.white,
+  },
+  body: {
+    fontSize: 14,
+  },
+}))(TableCell);
+
+const StyledTableRow = withStyles((theme) => ({
+  root: {
+    "&:nth-of-type(odd)": {
+      backgroundColor: theme.palette.action.hover,
+    },
+  },
+}))(TableRow);
 
 const OrderBook = ({ orderData, handleSale }) => {
   const classes = useStyle();
@@ -28,11 +47,11 @@ const OrderBook = ({ orderData, handleSale }) => {
           <TableContainer component={Paper}>
             <Table>
               <TableHead>
-                <TableCell>Order date</TableCell>
-                <TableCell>Price rate USD</TableCell>
-                <TableCell>Price rate GBP</TableCell>
-                <TableCell>Price rate EUR</TableCell>
-                <TableCell>Action</TableCell>
+                <StyledTableCell>Order date</StyledTableCell>
+                <StyledTableCell>Price rate USD</StyledTableCell>
+                <StyledTableCell>Price rate GBP</StyledTableCell>
+                <StyledTableCell>Price rate EUR</StyledTableCell>
+                <StyledTableCell>Action</StyledTableCell>
               </TableHead>
               <TableBody>
                 {orderData &&

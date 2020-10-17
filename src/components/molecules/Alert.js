@@ -8,7 +8,8 @@ const AlertComponent = ({ message, severity }) => {
   const handleOpen = () => {
     setOpen(false);
 
-    setOpen(null);
+    // we need to reset the component so it can be re-opened
+    setOpen(undefined);
   };
   return (
     <Collapse in={open}>
