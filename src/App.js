@@ -40,10 +40,22 @@ function App() {
     getData();
   }, []);
 
+  const getOrderData = async () => {
+    const res = await axios.get(process.env.REACT_APP_API_ENDPOINT + "/order");
+
+    let input = [];
+    res.data.forEach((obj) => {
+      input.push(obj);
+    });
+    setOrderData(input);
+
+    return res;
+  };
+
   const handlePurchase = async () => {
     setHandlingPurchase(true);
 
-    const res = await axios.post("http://localhost:3000/order", {
+    const res = await axios.post("http://localhost:3001/order", {
       orderDate: Date.now(),
       priceRateUSD: coinData[0].rate,
       priceRateGBP: coinData[1].rate,
@@ -53,27 +65,20 @@ function App() {
     if (res.status === 201) {
       setHandlingPurchase(false);
       setPurchaseSuccess(true);
+      getOrderData(); // update list
     } else {
       setPurchaseSuccess(false);
     }
   };
 
   useEffect(() => {
-    const getOrderData = async () => {
-      const res = await axios.get("http://localhost:3000/order");
-
-      let input = [];
-      res.data.forEach((obj) => {
-        input.push(obj);
-      });
-      setOrderData(input);
-    };
-    getOrderData();
+    const res = getOrderData();
+    console.log(res);
   }, []);
 
   const handleSale = async (id) => {
     setHandlingSales(true);
-    const res = await axios.delete(`http://localhost:3000/order/${id}`);
+    const res = await axios.delete(`http://localhost:3001/order/${id}`);
 
     if (res.status === 200) {
       setHandlingSales(false);
