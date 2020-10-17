@@ -12,6 +12,7 @@ Make sure server is up and running.
 
 - Retrieve most recent bitcoin prices
 - purchase and sell
+- purchase / sale success and warning message
 
 ## what remains to be developed
 
