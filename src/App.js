@@ -55,12 +55,15 @@ function App() {
   const handlePurchase = async () => {
     setHandlingPurchase(true);
 
-    const res = await axios.post("http://localhost:3001/order", {
-      orderDate: Date.now(),
-      priceRateUSD: coinData[0].rate,
-      priceRateGBP: coinData[1].rate,
-      priceRateEUR: coinData[2].rate,
-    });
+    const res = await axios.post(
+      process.env.REACT_APP_API_ENDPOINT + "/order",
+      {
+        orderDate: Date.now(),
+        priceRateUSD: coinData[0].rate,
+        priceRateGBP: coinData[1].rate,
+        priceRateEUR: coinData[2].rate,
+      }
+    );
 
     if (res.status === 201) {
       setHandlingPurchase(false);
@@ -78,7 +81,9 @@ function App() {
 
   const handleSale = async (id) => {
     setHandlingSales(true);
-    const res = await axios.delete(`http://localhost:3001/order/${id}`);
+    const res = await axios.delete(
+      process.env.REACT_APP_API_ENDPOINT + `/order/${id}`
+    );
 
     if (res.status === 200) {
       setHandlingSales(false);

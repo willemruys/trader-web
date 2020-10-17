@@ -8,6 +8,12 @@ Install packages using `yarn` and run `yarn develop`.
 
 Make sure server is up and running.
 
+### Add .env.local
+
+And add server url:
+
+`REACT_APP_API_ENDPOINT="http://localhost:3001"`
+
 ## available features
 
 - Retrieve most recent bitcoin prices
